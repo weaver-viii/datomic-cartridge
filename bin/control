@@ -1,0 +1,80 @@
+#!/bin/bash
+
+export LEIN_HOME="${OPENSHIFT_CLOJURE_DIR}/home"
+export M2_REPO="${OPENSHIFT_CLOJURE_DIR}/maven"
+
+# Control
+
+function start() {
+  echo "Starting application"
+  cd ${OPENSHIFT_REPO_DIR}
+
+  nohup ${OPENSHIFT_REPO_DIR}/datomic/bin/transactor free-transactor.properties > ${OPENSHIFT_CLOJURE_DIR}/log/server.log 2>&1 &
+
+  nohup ${OPENSHIFT_CLOJURE_DIR}/bin/lein trampoline run > ${OPENSHIFT_CLOJURE_DIR}/log/server.log 2>&1 &
+  nohup ${OPENSHIFT_CLOJURE_DIR}/bin/lein trampoline run > ${OPENSHIFT_CLOJURE_DIR}/log/server.log 2>&1 &
+  echo $! > ${OPENSHIFT_CLOJURE_DIR}/clojure.pid
+  return 0
+}
+
+function stop() {
+  pid=`cat ${OPENSHIFT_CLOJURE_DIR}/clojure.pid`
+  kill -0 $pid && kill -15 $pid
+  killall java
+  return 0
+}
+
+function status(){
+  pid=`cat ${OPENSHIFT_CLOJURE_DIR}/clojure.pid`
+  return `kill -0 $pid`
+}
+
+function restart(){
+  stop
+  start
+  return 0
+}
+
+function update() {
+  return 0
+}
+
+function tidy() {
+  return 0
+}
+
+# Not used
+
+function build() {
+  return 0
+}
+
+function pre-build(){
+ return 0
+}
+
+function post-deploy(){
+  return 0
+}
+
+# Help
+
+if ! [ $# -gt 0 ]; then
+  echo "Usage: $0 [start|restart|graceful|graceful-stop|stop|status|update]"
+  exit 1
+fi
+
+# Logic
+
+case "$1" in
+  start) start ;;
+  restart|graceful) restart ;;
+  graceful-stop|stop) stop ;;
+  status) status ;;
+  build) build ;;
+  pre-build) pre-build ;;
+  post-deploy) post-deploy ;;
+  tidy) tidy ;;
+  update) update ;;
+  *)
+esac

@@ -1,0 +1,34 @@
+Name: clojure
+
+Cartridge-Short-Name: CLOJURE
+Cartridge-Version: '0.0.1'
+Cartridge-Vendor: mjelen
+
+Display-Name: Clojure (1.6.0)
+Description: "Clojure is a dynamic programming language that targets the Java Virtual Machine (and the CLR, and JavaScript)."
+
+Version: '1.6.0'
+Website: http://www.clojure.org
+
+Categories:
+  - service
+  - web_framework
+  - clojure
+
+Provides:
+  - clojure-1.6.0
+  - clojure
+
+Scaling:
+  Min: 1
+  Max: -1
+
+Endpoints:
+  - Private-IP-Name:   HTTP_IP
+    Private-Port-Name: HTTP_PORT
+    Private-Port:      8080
+    Public-Port-Name:  PROXY_HTTP_PORT
+    Mappings:
+      - Frontend:      ""
+        Backend:       ""
+        Options:       { websocket: false }

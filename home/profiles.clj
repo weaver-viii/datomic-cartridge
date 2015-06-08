@@ -1,0 +1,1 @@
+{:user {:local-repo "maven"}}
