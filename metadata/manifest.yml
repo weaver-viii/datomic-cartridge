@@ -1,11 +1,11 @@
-Name: clojure
+Name: datomic
 
-Cartridge-Short-Name: CLOJURE
+Cartridge-Short-Name: DATOMIC
 Cartridge-Version: '0.0.1'
-Cartridge-Vendor: mjelen
+Cartridge-Vendor: monjohn
 
-Display-Name: Clojure (1.6.0)
-Description: "Clojure is a dynamic programming language that targets the Java Virtual Machine (and the CLR, and JavaScript)."
+Display-Name: Datomic
+Description: "The fully transactional, cloud-ready, distributed database."
 
 Version: '1.6.0'
 Website: http://www.clojure.org
