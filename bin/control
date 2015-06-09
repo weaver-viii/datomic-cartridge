@@ -1,30 +1,32 @@
 #!/bin/bash
 
-export LEIN_HOME="${OPENSHIFT_CLOJURE_DIR}/home"
-export M2_REPO="${OPENSHIFT_CLOJURE_DIR}/maven"
+export LEIN_HOME="${OPENSHIFT_DATOMIC_DIR}/home"
+export M2_REPO="${OPENSHIFT_DATOMIC_DIR}/maven"
 
 # Control
 
 function start() {
   echo "Starting application"
   cd ${OPENSHIFT_REPO_DIR}
+  echo "IP for host: "
+  echo ${OPENSHIFT_DATOMIC_HTTP_IP}
 
-  nohup ${OPENSHIFT_REPO_DIR}/datomic/bin/transactor free-transactor.properties > ${OPENSHIFT_CLOJURE_DIR}/log/server.log 2>&1 &
+  nohup ${OPENSHIFT_REPO_DIR}/datomic/bin/transactor free-transactor.properties > ${OPENSHIFT_DATOMIC_DIR}/log/server.log 2>&1 &
 
-  nohup ${OPENSHIFT_CLOJURE_DIR}/bin/lein trampoline run > ${OPENSHIFT_CLOJURE_DIR}/log/server.log 2>&1 &
-  echo $! > ${OPENSHIFT_CLOJURE_DIR}/clojure.pid
+  nohup ${OPENSHIFT_DATOMIC_DIR}/bin/lein trampoline run > ${OPENSHIFT_DATOMIC_DIR}/log/server.log 2>&1 &
+  echo $! > ${OPENSHIFT_DATOMIC_DIR}/DATOMIC.pid
   return 0
 }
 
 function stop() {
-  pid=`cat ${OPENSHIFT_CLOJURE_DIR}/clojure.pid`
+  pid=`cat ${OPENSHIFT_DATOMIC_DIR}/DATOMIC.pid`
   kill -0 $pid && kill -15 $pid
   killall java
   return 0
 }
 
 function status(){
-  pid=`cat ${OPENSHIFT_CLOJURE_DIR}/clojure.pid`
+  pid=`cat ${OPENSHIFT_DATOMIC_DIR}/DATOMIC.pid`
   return `kill -0 $pid`
 }
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export LEIN_HOME="${OPENSHIFT_CLOJURE_DIR}/home"
-export M2_REPO="${OPENSHIFT_CLOJURE_DIR}/maven"
+export LEIN_HOME="${OPENSHIFT_DATOMIC_DIR}/home"
+export M2_REPO="${OPENSHIFT_DATOMIC_DIR}/maven"
 
 mkdir -p $LEIN_HOME
 mkdir -p $M2_REPO

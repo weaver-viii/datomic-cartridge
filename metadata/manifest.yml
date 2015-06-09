@@ -18,6 +18,7 @@ Categories:
 Provides:
   - clojure-1.6.0
   - clojure
+  - datomic
 
 Scaling:
   Min: 1
