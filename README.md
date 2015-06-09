@@ -9,6 +9,7 @@ Deploy Clojure and Datomic application on OpenShift.
 
 ```
 
+git app-create mydatomapp https://github.com/monjohn/datomic-cartridge/blob/master/metadata/manifest.yml
 
 ## Download datomic-free... and put it in templates folder ??
 
