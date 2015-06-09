@@ -32,3 +32,6 @@ Endpoints:
       - Frontend:      ""
         Backend:       ""
         Options:       { websocket: false }
+
+Source-Url: https://github.com/monjohn/datomic-cartridge.git
+
