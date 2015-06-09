@@ -3,7 +3,7 @@
   (:require [datomic.api :as d]))
 
 (def dbip
-  (get (System/getenv) "OPENSHIFT_INTERNAL_IP" "localhost"))
+  (get (System/getenv) "OPENSHIFT_DATOMIC_HTTP_IP" "localhost"))
 
 (def dbport
   (if (get (System/getenv) "OPENSHIFT_INTERNAL_IP")

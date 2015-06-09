@@ -6,12 +6,23 @@ export M2_REPO="${OPENSHIFT_DATOMIC_DIR}/maven"
 # Control
 
 function start() {
+
+
   echo "Starting application"
   cd ${OPENSHIFT_REPO_DIR}
+  echo "protocol=free" > free-transactor.properties
+  echo "host=${OPENSHIFT_DATOMIC_HTTP_IP}" >> free-transactor.properties
+  echo "port=24334" >> free-transactor.properties
+  echo "port=24335" >> free-transactor.properties
+  echo "port=24336" >> free-transactor.properties
+  echo "memory-index-threshold=32m" >> free-transactor.properties
+  echo "memory-index-max=256m" >> free-transactor.properties
+  echo "object-cache-max=128m" >> free-transactor.properties
+
   echo "IP for host: "
   echo ${OPENSHIFT_DATOMIC_HTTP_IP}
 
-  nohup ${OPENSHIFT_REPO_DIR}/datomic/bin/transactor free-transactor.properties > ${OPENSHIFT_DATOMIC_DIR}/log/server.log 2>&1 &
+  nohup ${OPENSHIFT_REPO_DIR}/datomic-free-0.9.5173/bin/transactor free-transactor.properties > ${OPENSHIFT_DATOMIC_DIR}/log/server.log 2>&1 &
 
   nohup ${OPENSHIFT_DATOMIC_DIR}/bin/lein trampoline run > ${OPENSHIFT_DATOMIC_DIR}/log/server.log 2>&1 &
   echo $! > ${OPENSHIFT_DATOMIC_DIR}/DATOMIC.pid
