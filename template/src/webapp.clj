@@ -39,6 +39,6 @@
    :body  (or query-result "Hello world")})
 
 (defn -main [& args]
-  (let [port (Integer/parseInt (get (System/getenv) "OPENSHIFT_CLOJURE_HTTP_PORT" "8080"))
-        ip (get (System/getenv) "OPENSHIFT_CLOJURE_HTTP_IP" "0.0.0.0")]
+  (let [port (Integer/parseInt (get (System/getenv) "OPENSHIFT_DATOMIC_HTTP_PORT" "8080"))
+        ip (get (System/getenv) "OPENSHIFT_DATOMIC_HTTP_IP" "0.0.0.0")]
     (run-server app {:ip ip :port port})))

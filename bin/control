@@ -2,7 +2,7 @@
 
 export LEIN_HOME="${OPENSHIFT_DATOMIC_DIR}/home"
 export M2_REPO="${OPENSHIFT_DATOMIC_DIR}/maven"
-
+export JAVA_OPTS="-Dh2.bindAddress=$OPENSHIFT_DATOMIC_HTTP_IP"
 # Control
 
 function start() {
