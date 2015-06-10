@@ -30,7 +30,8 @@
 
 (def ent (d/entity db q-result))
  
-(def query-result (:db/doc (d/touch ent)))
+(def query-result (str (:db/doc (d/touch ent))
+                       " If you see this message it means that you are connected to the database."))
 
 
 (defn app [req]
