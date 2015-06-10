@@ -12,8 +12,8 @@ function start() {
   echo "protocol=free" > free-transactor.properties
   echo "host=${OPENSHIFT_DATOMIC_HTTP_IP}" >> free-transactor.properties
   echo "port=24334" >> free-transactor.properties
-  echo "port=24335" >> free-transactor.properties
-  echo "port=24336" >> free-transactor.properties
+  echo "h2-port=24335" >> free-transactor.properties
+  echo "h2-web-port=24336" >> free-transactor.properties
   echo "memory-index-threshold=32m" >> free-transactor.properties
   echo "memory-index-max=256m" >> free-transactor.properties
   echo "object-cache-max=128m" >> free-transactor.properties
